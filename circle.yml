@@ -1,0 +1,17 @@
+machine:
+  java:
+    version: openjdk7
+  environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
+
+dependencies:
+  pre:
+    - echo y | android update sdk --no-ui --all --filter "android-23,build-tools-23.0.1"
+    - echo y | android update sdk --no-ui --all --filter "extra-android-m2repository,extra-android-support"
+
+  override:
+    - ./gradlew scaex:dependencies
+
+test:
+  override:
+    - ./gradlew clean scaex:test -PdisablePreDex
