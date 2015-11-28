@@ -1,6 +1,6 @@
 package net.petitviolet.scaex;
 
-import net.petitviolet.scaex.func.Action;
+import net.petitviolet.scaex.func.Function;
 
 /**
  * A result = IF.x(condition).then(x)//.eval()
@@ -39,9 +39,9 @@ public class IF<A> {
         return this;
     }
 
-    public IF<A> then(Action.A1<A> result) {
+    public IF<A> then(Function.F0<A> result) {
         if (!mIsDefined && mIsTrue) {
-            mValue = result.run();
+            mValue = result.apply();
             mIsDefined = true;
         }
         return this;
@@ -54,7 +54,6 @@ public class IF<A> {
     public IF<A> ElseIf(Boolean isTrue) {
         if (!mIsDefined) {
             mIsTrue = isTrue;
-            System.out.println("YES");
         }
         return this;
     }
@@ -62,7 +61,7 @@ public class IF<A> {
     public A Else(A result) {
         return mIsDefined ? mValue : result;
     }
-    public A Else(Action.A1<A> result) {
-        return mIsDefined ? mValue : result.run();
+    public A Else(Function.F0<A> result) {
+        return mIsDefined ? mValue : result.apply();
     }
 }
