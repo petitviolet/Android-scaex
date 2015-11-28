@@ -36,7 +36,7 @@ public class Match<A, B> {
         return mIsDefined ? mResult : defaultValue;
     }
 
-    private Match<A, B> Case(boolean condition) {
+    public Match<A, B> Case(boolean condition) {
         if (!mIsDefined) {
             mIsTrue = condition;
         }

@@ -19,6 +19,15 @@ public class MatchTest {
     }
 
     @Test
+    public void testPrimitiveCase() throws Exception {
+        int target = 100;
+        String result = Match.<String, Integer>x(target)
+                .Case(target == 100).then("nice")
+                .eval();
+        assert result.equals("nice") == true;
+    }
+        
+    @Test
     public void testDefaultEval() throws Exception {
         String result = Match.<String, Boolean>x(false).eval("nice");
         assert result.equals("nice") == true;
