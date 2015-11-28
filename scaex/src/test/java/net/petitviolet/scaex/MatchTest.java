@@ -28,6 +28,17 @@ public class MatchTest {
     }
 
     @Test
+    public void testPrimitiveCase2() throws Exception {
+        int target = 100;
+        String result = Match.<String, Integer>x(target)
+                .Case(target < 100).then("down")
+                .Case(target > 100).then("up")
+                .Case(target == 100).then("draw")
+                .eval();
+        assert result.equals("draw") == true;
+    }
+
+    @Test
     public void testDefaultEval() throws Exception {
         String result = Match.<String, Boolean>x(false).eval("nice");
         assert result.equals("nice") == true;
