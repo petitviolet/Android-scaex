@@ -26,11 +26,27 @@ public class MatchTest {
                 .eval();
         assert result.equals("nice") == true;
     }
-        
+
     @Test
     public void testDefaultEval() throws Exception {
         String result = Match.<String, Boolean>x(false).eval("nice");
         assert result.equals("nice") == true;
+    }
+
+    @Test
+    public void testValueCase() throws Exception {
+        String result = Match.<String, Integer>x(100)
+                .Case(100).then("nice")
+                .eval();
+        assert result.equals("nice") == true;
+    }
+
+    @Test
+    public void testMissValueCase() throws Exception {
+        String result = Match.<String, Integer>x(100)
+                .Case(999).then("nice")
+                .eval();
+        assert result == null;
     }
 
     @Test
