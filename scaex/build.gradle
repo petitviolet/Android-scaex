@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 9
         targetSdkVersion 23
     }
     buildTypes {
@@ -25,7 +25,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'net.petitviolet.android'
-version = '0.1.0'
+version = '0.1.1'
 def siteUrl = 'https://github.com/petitviolet/android-scaex'
 def gitUrl = 'https://github.com/petitviolet/android-scaex.git'
 
