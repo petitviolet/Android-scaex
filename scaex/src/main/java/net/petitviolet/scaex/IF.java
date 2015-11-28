@@ -39,7 +39,7 @@ public class IF<A> {
         return this;
     }
 
-    public IF<A> then(Action<A> result) {
+    public IF<A> then(Action.A1<A> result) {
         if (!mIsDefined && mIsTrue) {
             mValue = result.run();
             mIsDefined = true;
@@ -62,7 +62,7 @@ public class IF<A> {
     public A Else(A result) {
         return mIsDefined ? mValue : result;
     }
-    public A Else(Action<A> result) {
+    public A Else(Action.A1<A> result) {
         return mIsDefined ? mValue : result.run();
     }
 }

@@ -61,17 +61,17 @@ public class IFxTest {
 
     @Test
     public void ifxTest1x() throws Exception {
-        String result = IF.<String>x(true).then(new Action<String>() {
+        String result = IF.<String>x(true).then(new Action.A1<String>() {
             @Override
             public String run() {
                 return "hoge";
             }
-        }).ElseIf(false).then(new Action<String>() {
+        }).ElseIf(false).then(new Action.A1<String>() {
             @Override
             public String run() {
                 return "foo";
             }
-        }).Else(new Action<String>() {
+        }).Else(new Action.A1<String>() {
             @Override
             public String run() {
                 return "bar";
@@ -83,17 +83,17 @@ public class IFxTest {
 
     @Test
     public void ifxTest2x() throws Exception {
-        String result = IF.<String>x(false).then(new Action<String>() {
+        String result = IF.<String>x(false).then(new Action.A1<String>() {
             @Override
             public String run() {
                 return "hoge";
             }
-        }).ElseIf(true).then(new Action<String>() {
+        }).ElseIf(true).then(new Action.A1<String>() {
             @Override
             public String run() {
                 return "foo";
             }
-        }).Else(new Action<String>() {
+        }).Else(new Action.A1<String>() {
             @Override
             public String run() {
                 return "bar";
@@ -105,17 +105,17 @@ public class IFxTest {
 
     @Test
     public void ifxTest3x() throws Exception {
-        String result = IF.<String>x(false).then(new Action<String>() {
+        String result = IF.<String>x(false).then(new Action.A1<String>() {
             @Override
             public String run() {
                 return "hoge";
             }
-        }).ElseIf(false).then(new Action<String>() {
+        }).ElseIf(false).then(new Action.A1<String>() {
             @Override
             public String run() {
                 return "foo";
             }
-        }).Else(new Action<String>() {
+        }).Else(new Action.A1<String>() {
             @Override
             public String run() {
                 return "bar";
