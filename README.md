@@ -1,5 +1,8 @@
 # Android-scaex
 
+[![Circle CI](https://circleci.com/gh/petitviolet/Android-scaex.svg?style=svg)](https://circleci.com/gh/petitviolet/Android-scaex)
+[![Download](https://api.bintray.com/packages/petitviolet/maven/android-scaex/images/download.svg)](https://bintray.com/petitviolet/maven/android-scaex/_latestVersion)
+
 This library provides some expressions, `IF`, `Match` like Scala.
 `IF` enables java if-statement to return a value as Scala if-expression.
 `Match` also enables java to use pattern-match expression.
