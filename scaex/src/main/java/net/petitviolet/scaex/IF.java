@@ -58,6 +58,13 @@ public class IF<A> {
         return this;
     }
 
+    public IF<A> ElseIf(Function.F0<Boolean> condition) {
+        if (!mIsDefined) {
+            return ElseIf(condition.apply());
+        }
+        return this;
+    }
+
     public A Else(A result) {
         return mIsDefined ? mValue : result;
     }

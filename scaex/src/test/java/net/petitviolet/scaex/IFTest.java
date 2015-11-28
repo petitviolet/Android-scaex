@@ -4,6 +4,9 @@ import net.petitviolet.scaex.func.Function;
 
 import org.junit.Test;
 
+import java.lang.Boolean;
+import java.lang.Override;
+
 import static org.junit.Assert.*;
 
 /**
@@ -122,5 +125,32 @@ public class IFTest {
             }
         });
         assert result == "bar";
+    }
+
+    @Test
+    public void ifxTestElseFunction() {
+        final int condition = 100;
+        String result = IF.<String>x(false).then(new Function.F0<String>() {
+            @Override
+            public String apply() {
+                return "hoge";
+            }
+        }).ElseIf(new Function.F0<Boolean>() {
+            @Override
+            public Boolean apply() {
+                return 100 == 100;
+            }
+        }).then(new Function.F0<String>() {
+            @Override
+            public String apply() {
+                return "foo";
+            }
+        }).Else(new Function.F0<String>() {
+            @Override
+            public String apply() {
+                return "bar";
+            }
+        });
+        assert result == "foo";
     }
 }
