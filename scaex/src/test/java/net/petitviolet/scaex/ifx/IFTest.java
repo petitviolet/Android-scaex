@@ -1,6 +1,6 @@
 package net.petitviolet.scaex;
 
-import net.petitviolet.scaex.func.Action;
+import net.petitviolet.scaex.func.Function;
 
 import org.junit.Test;
 
@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 /**
  * To work on unit tests, switch the Test Artifact in the Build Variants view.
  */
-public class IFxTest {
+public class IFTest {
     @Test
     public void ifxTestFail() throws Exception {
         String result = IF.<String>x(false).then("hoge")
@@ -61,19 +61,19 @@ public class IFxTest {
 
     @Test
     public void ifxTest1x() throws Exception {
-        String result = IF.<String>x(true).then(new Action.A1<String>() {
+        String result = IF.<String>x(true).then(new Function.F0<String>() {
             @Override
-            public String run() {
+            public String apply() {
                 return "hoge";
             }
-        }).ElseIf(false).then(new Action.A1<String>() {
+        }).ElseIf(false).then(new Function.F0<String>() {
             @Override
-            public String run() {
+            public String apply() {
                 return "foo";
             }
-        }).Else(new Action.A1<String>() {
+        }).Else(new Function.F0<String>() {
             @Override
-            public String run() {
+            public String apply() {
                 return "bar";
             }
         });
@@ -83,19 +83,19 @@ public class IFxTest {
 
     @Test
     public void ifxTest2x() throws Exception {
-        String result = IF.<String>x(false).then(new Action.A1<String>() {
+        String result = IF.<String>x(false).then(new Function.F0<String>() {
             @Override
-            public String run() {
+            public String apply() {
                 return "hoge";
             }
-        }).ElseIf(true).then(new Action.A1<String>() {
+        }).ElseIf(true).then(new Function.F0<String>() {
             @Override
-            public String run() {
+            public String apply() {
                 return "foo";
             }
-        }).Else(new Action.A1<String>() {
+        }).Else(new Function.F0<String>() {
             @Override
-            public String run() {
+            public String apply() {
                 return "bar";
             }
         });
@@ -105,19 +105,19 @@ public class IFxTest {
 
     @Test
     public void ifxTest3x() throws Exception {
-        String result = IF.<String>x(false).then(new Action.A1<String>() {
+        String result = IF.<String>x(false).then(new Function.F0<String>() {
             @Override
-            public String run() {
+            public String apply() {
                 return "hoge";
             }
-        }).ElseIf(false).then(new Action.A1<String>() {
+        }).ElseIf(false).then(new Function.F0<String>() {
             @Override
-            public String run() {
+            public String apply() {
                 return "foo";
             }
-        }).Else(new Action.A1<String>() {
+        }).Else(new Function.F0<String>() {
             @Override
-            public String run() {
+            public String apply() {
                 return "bar";
             }
         });
