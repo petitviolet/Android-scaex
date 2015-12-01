@@ -15,24 +15,24 @@ This library provides some expressions, `IF`, `Match` like Scala.
 ```java
 /** returns primitive value pattern **/
 // if ~ else if ~ else
-String result = IFx.<String>of(false).then("hoge")
+String result = IF.<String>x(false).then("hoge")
         .ElseIf(false).then("foo")
         .Else("bar");
 assert result == "bar";
 
 // if ~ else if ~
-String result2 = IFx.<String>of(true).then("hoge")
+String result2 = IF.<String>x(true).then("hoge")
         .ElseIf(false).then("foo")
         .get();
 assert result2 == "hoge";
 
 // not matched
-String result3 = IFx.<String>of(false).then("hoge").get()
+String result3 = IF.<String>x(false).then("hoge").get()
 assert result3 == null;
 
 
 /** returns value the result of given method invoked **/
-String result4 = IFx.<String>of(false).then(new Action<String>() {
+String result4 = IF.<String>x(false).then(new Action<String>() {
     @Override
     public String run() {
         return "hoge";
@@ -53,7 +53,7 @@ String result4 = IFx.<String>of(false).then(new Action<String>() {
 assert result4 == "foo";
 
 // with lambda expression
-String result5 = IFx.<String>of(false).then(() -> "hoge")
+String result5 = IF.<String>x(false).then(() -> "hoge")
     .ElseIf(true).then(() -> "foo")
     .Else(() -> {
         Log.d(TAG, "in else condition!");
