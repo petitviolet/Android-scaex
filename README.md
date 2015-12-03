@@ -1,12 +1,20 @@
 # Android-scaex
 
 [![Circle CI](https://circleci.com/gh/petitviolet/Android-scaex.svg?style=svg)](https://circleci.com/gh/petitviolet/Android-scaex)
-[![Download](https://api.bintray.com/packages/petitviolet/maven/android-scaex/images/download.svg)](https://bintray.com/petitviolet/maven/android-scaex/_latestVersion)
+[![Download](https://api.bintray.com/packages/petitviolet/maven/android-scaex/images/download.svg)](https://bintray.com/petitviolet/maven/android-scaex/\_latestVersion)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--scaex-green.svg?style=true)](https://android-arsenal.com/details/1/2859)
 
 This library provides some expressions, `IF`, `Match` like Scala.  
 `IF` enables java if-statement to return a value as Scala if-expression.  
 `Match` also enables java to use pattern-match expression.
+
+# Setup
+
+```groovy
+dependencies {
+    compile 'net.petitviolet.android:scaex:<latest-version>
+}
+```
 
 # Interface
 
