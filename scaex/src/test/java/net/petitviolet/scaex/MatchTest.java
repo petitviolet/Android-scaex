@@ -120,13 +120,13 @@ public class MatchTest {
                 .Case(new Function.F1<Object, Boolean>() {
                     @Override
                     public Boolean apply(Object integer) {
-                        return integer == 999;
+                        return integer.equals(999);
                     }
                 }).then(3)
                 .Case(new Function.F1<Object, Boolean>() {
                     @Override
                     public Boolean apply(Object integer) {
-                        return integer == 100;
+                        return integer.equals(100);
                     }
                 }).then(4)
                 .Case(Integer.class).then(5)
