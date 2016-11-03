@@ -1,6 +1,6 @@
 machine:
   java:
-    version: openjdk7
+    version: openjdk8
   environment:
     ANDROID_HOME: /usr/local/android-sdk-linux
 
@@ -14,4 +14,4 @@ dependencies:
 
 test:
   override:
-    - ./gradlew clean scaex:test -PdisablePreDex
+    - ./gradlew scaex:clean scaex:test -PdisablePreDex
