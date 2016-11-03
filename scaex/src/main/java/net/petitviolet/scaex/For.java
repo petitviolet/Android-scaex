@@ -10,10 +10,11 @@ import java.util.Locale;
 import java.util.logging.Logger;
 
 /**
- * For.<A>x(list).action(item -> { doAction(item); });
- * List<B> results = For.<A>x(list).action(item -> { return someFunction(item); });
- *
- * For.x(1).to(10).by(1).action(i -> { // action or function like above. }
+ * <pre>{@code
+ For.<A>x(list).action(item -> { doAction(item); });
+ List<B> results = For.<A>x(list).action(item -> { return someFunction(item); });
+
+ For.x(1).to(10).by(1).action(i -> { // action or function like above. }}</pre>
  * @param <A>
  */
 public class For<A> {
@@ -49,7 +50,7 @@ public class For<A> {
     }
 
     /**
-     * constructor like for(i = 0; i <= n; i++) { // do something. }
+     * {@code constructor like for(i = 0; i <= n; i++) { // do something. }}
      * @param i
      * @return
      */
@@ -86,10 +87,11 @@ public class For<A> {
     }
 
     /**
-     * For.x(int i) creates this Builder class.
-     * For.x(1).to(10).by(3) //=> 1, 4, 7, 10
-     * For.x(1).until(10).by(3) //=> 1, 4, 7
-     * For.x(1).by(2) //=> 1, 3, 5, ..., Integer.MAX_VALUE(2147483647)
+     * <pre>{@code
+     For.x(int i) creates this Builder class.
+     For.x(1).to(10).by(3) //=> 1, 4, 7, 10
+     For.x(1).until(10).by(3) //=> 1, 4, 7
+     For.x(1).by(2) //=> 1, 3, 5, ..., Integer.MAX_VALUE(2147483647) }</pre>
      */
     public static class ForBuilder {
         // have `long` internal value for suppress Integer Overflow.

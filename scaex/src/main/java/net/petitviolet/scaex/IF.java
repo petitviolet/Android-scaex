@@ -3,9 +3,10 @@ package net.petitviolet.scaex;
 import net.petitviolet.scaex.func.Function;
 
 /**
- * A result = IF.x(condition).then(x)//.eval()
- * .ElseIf(condition2).then(y)//.eval()
- * .else(z)
+ * <pre>{@code
+ A result = IF.x(condition).then(x)//.eval()
+  .ElseIf(condition2).then(y)//.eval()
+  .else(z)}</pre>
  * @param <A>
  */
 public class IF<A> {

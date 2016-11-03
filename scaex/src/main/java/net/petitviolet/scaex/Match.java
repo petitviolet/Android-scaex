@@ -3,11 +3,12 @@ package net.petitviolet.scaex;
 import net.petitviolet.scaex.func.Function;
 
 /**
- * Match.<A>x((B) obj)
- * .Case(condition1).then(result1)//.eval()
- * .Case(condition2).then(result2)//.eval()
- * .Case(condition3).then(result3)
- * .eval() #=> A result
+ * <pre>{@code
+ Match.<A>x((B) obj)
+  .Case(condition1).then(result1)//.eval()
+  .Case(condition2).then(result2)//.eval()
+  .Case(condition3).then(result3)
+  .eval() #=> A result }</pre>
  */
 public class Match<A, B> {
     private static final String TAG = Match.class.getSimpleName();
