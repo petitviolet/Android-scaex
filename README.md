@@ -120,6 +120,53 @@ String result4 = Match.<String, String>x("hoge")
 assert result4 == "long";
 ```
 
+### For
+
+```java
+// for(Integer i: inputs) { i -> action(i) }
+List<Integer> inputs = Arrays.asList(1, 2, 3);
+For.x(inputs).action(new Action.A1<Integer>() {
+    @Override
+    public void run(Integer integer) {
+        Log.i(Tag, s"result ->" + integer * 2);
+    }
+});
+
+// for statement with returning value
+// result = for(String s: strings) { s -> function(s) }
+List<String> result = For.x(Arrays.asList("a", "b", "c")).apply(new Function.F1<String, String>() {
+    @Override
+    public String apply(String s) {
+        return "x" + s;
+    }
+});
+
+// for(int i = 0; i <= 10; i++) { // }
+// `x(0).to(10).by(1)`
+List<Integer> result = For.x(0).to(10).by(1).apply(new Function.F1<Integer, Integer>() {
+    @Override
+    public Integer apply(Integer integer) {
+        return integer;
+    }
+});
+
+// for(int i = 1; i < 10; i = i + 2 { // }
+// `x(1).until(10).by(2)`
+List<Integer> result = For.x(1).until(10).by(2).apply(new Function.F1<Integer, Integer>() {
+    @Override
+    public Integer apply(Integer integer) {
+        return integer;
+    }
+});
+
+
+// example using lambda
+// like foreach
+For.x(inputs).action(s -> Log.i(String.format("testFor: %s", input), s));
+// like map
+List<String> results = For.x(inputs).apply(s -> String.format("applied: %s: %s", input, s));
+```
+
 # Lisence
 
 This code is licensed under the Apache Software License 2.0.

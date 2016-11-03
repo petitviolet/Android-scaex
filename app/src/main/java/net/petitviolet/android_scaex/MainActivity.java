@@ -53,9 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 mButtonIF.toString(),
                 mButtonFor.toString(),
                 mButtonMatch.toString());
-        For.x(inputs).action(s -> {
-            Log.i(String.format("testFor: %s", input), s);
-        });
+        For.x(inputs).action(s -> Log.i(String.format("testFor: %s", input), s));
 
         For.x(1).to(10).by(3).action(i -> Log.i(String.format("testFor: %s", input), "i: " + i));
 
