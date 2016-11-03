@@ -1,19 +1,30 @@
 package net.petitviolet.android_scaex;
 
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import net.petitviolet.scaex.IF;
 import net.petitviolet.scaex.Match;
+import net.petitviolet.scaex.For;
+import net.petitviolet.scaex.func.Action;
+
+import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private EditText mEditText;
     private Button mButtonIF;
     private Button mButtonMatch;
+    private Button mButtonFor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
         mEditText = (EditText) findViewById(R.id.edit_text);
         mButtonIF = (Button) findViewById(R.id.ifx);
         mButtonMatch = (Button) findViewById(R.id.match);
+        mButtonFor = (Button) findViewById(R.id.forx);
         mButtonIF.setOnClickListener(v -> testIFx(mEditText.getText().toString()));
         mButtonMatch.setOnClickListener(v -> testMatch(mEditText.getText().toString()));
+        mButtonFor.setOnClickListener(v -> testFor(mEditText.getText().toString()));
     }
 
     private void testMatch(String input) {
@@ -40,6 +53,23 @@ public class MainActivity extends AppCompatActivity {
         toast(result);
     }
 
+    private void testFor(String input) {
+        List<String> inputs = Arrays.asList(
+                mButtonIF.toString(),
+                mButtonFor.toString(),
+                mButtonMatch.toString());
+        For.x(inputs).apply(s -> {
+            Log.i(String.format("testFor: %s", input), s);
+        });
+
+        For.x(1).to(10).by(1).apply(i -> {Log.i(String.format("testFor: %s", input), "i: " + i);});
+
+        List<String> results = For.x(inputs).apply(s -> {
+           return String.format("applied: %s: %s", input, s);
+        });
+
+        toast(Arrays.toString(results.toArray()));
+    }
     private void toast(String string) {
         Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
     }
