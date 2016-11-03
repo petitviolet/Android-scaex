@@ -7,34 +7,75 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Logger;
 
+/**
+ * For.<A>x(list).action(item -> { doAction(item); });
+ * List<B> results = For.<A>x(list).action(item -> { return someFunction(item); });
+ *
+ * For.x(1).to(10).by(1).action(i -> { // action or function like above. }
+ * @param <A>
+ */
 public class For<A> {
     private static final String TAG = For.class.getSimpleName();
-    private Iterator<A> mIterator;
+    private final Iterator<A> mIterator;
 
+    /**
+     * hidden constructor. Internal API.
+     * @param mIterator
+     */
     private For(Iterator<A> mIterator) {
         this.mIterator = mIterator;
     }
 
+    /**
+     * constructor with Iterator
+     * @param iterator
+     * @param <A>
+     * @return
+     */
     public static <A> For<A> x(Iterator<A> iterator) {
         return new For<>(iterator);
     }
 
+    /**
+     * constructor with Iterable. e.g. List.
+     * @param iterable
+     * @param <A>
+     * @return
+     */
     public static <A> For<A> x(Iterable<A> iterable) {
         return new For<>(iterable.iterator());
     }
 
+    /**
+     * constructor like for(i = 0; i <= n; i++) { // do something. }
+     * @param i
+     * @return
+     */
     public static ForBuilder x(int i) {
         return new ForBuilder(i);
     }
 
-    public void apply(Action.A1<A> action) {
+    /**
+     * do something on each item of given Iterable/Iterator
+     * can use as Java for-statement.
+     * @param action
+     */
+    public void action(Action.A1<A> action) {
         while (mIterator.hasNext()) {
             A item = mIterator.next();
             action.run(item);
         }
     }
 
+    /**
+     * do something and return value using each item of given Iterable/Iterator
+     * can use as Scala for-expression.
+     * @param function
+     * @param <B>
+     * @return
+     */
     public <B> List<B> apply(Function.F1<A, B> function) {
         List<B> results = new ArrayList<>();
         while (mIterator.hasNext()) {
@@ -44,13 +85,19 @@ public class For<A> {
         return results;
     }
 
+    /**
+     * For.x(int i) creates this Builder class.
+     * For.x(1).to(10).by(3) //=> 1, 4, 7, 10
+     * For.x(1).until(10).by(3) //=> 1, 4, 7
+     * For.x(1).by(2) //=> 1, 3, 5, ..., Integer.MAX_VALUE(2147483647)
+     */
     public static class ForBuilder {
-        private final int mI;
-        private int mLimit;
+        // have `long` internal value for suppress Integer Overflow.
+        private final long mI;
+        private int mLimit = Integer.MAX_VALUE;
 
-        public ForBuilder(int i) {
+        ForBuilder(int i) {
             this.mI = i;
-            this.mLimit = i;
         }
 
         public ForBuilder to(int to) {
@@ -65,19 +112,22 @@ public class For<A> {
 
         public For<Integer> by(final int step) {
             Iterator<Integer> iterator = new Iterator<Integer>() {
-                private int iCurrent = 0;
+                // have `long` internal value for suppress Integer Overflow.
+                private long iCurrent = mI;
                 private final int iLimit = mLimit;
                 private final int iStep = step;
+
                 @Override
                 public boolean hasNext() {
-                    return iCurrent + step <= mLimit;
+                    return iCurrent <= mLimit && iCurrent <= Integer.MAX_VALUE;
                 }
 
                 @Override
                 public Integer next() {
                     if (hasNext()) {
+                        Integer result = (int) iCurrent;
                         iCurrent += step;
-                        return iCurrent;
+                        return result;
                     }
                     throw new IndexOutOfBoundsException(
                             String.format(Locale.getDefault(),
